@@ -38,15 +38,16 @@ public class Printer extends Thread{
                 if (time > 3.5 * 60) {
                     state = "Post";
                 }
-                System.out.println("{\"Time\":" + time + ",\"State\":" + state + ",\"Anchor1\":false,\"Anchor2\":true}");
+                //System.out.println("{\"Time\":" + time + ",\"State\":" + state + ",\"Anchor1\":false,\"Anchor2\":true}");
                 pw.println("{\"Time\":" + time + ",\"State\":" + state + ",\"Anchor1\":true,\"Anchor2\":true}");
+                pw.flush();
                 help = time+1;
                 try {
                     time = app.getTime();
                 }catch (NullPointerException x){
                     time = help;
                 }
-                Thread.sleep(990);
+                Thread.sleep(800);
             }
         }catch(Exception x){
             x.printStackTrace();

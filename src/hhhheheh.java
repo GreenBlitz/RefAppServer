@@ -2,36 +2,30 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.PrintStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Created by ofeke on 7/30/2018.
  */
 public class hhhheheh {
     public static void main(String[] args) throws Exception{
-        ArrayList<ArrayList<Integer>> arr = new ArrayList<ArrayList<Integer>>();
-        JSONObject jo = new JSONObject();
-        JSONArray ja = new JSONArray();
-        jo.put("Message", "Piles");
-        JSONObject njo;
-        Random rand = new Random();
-        int len  =100;
-        jo.put("Length", len);
-        for(int i= 0 ; i< len;i++){
-            njo  = new JSONObject();
-            njo.put("Pile", i);
-            int l = rand.nextInt(10)+1;
-            njo.put("Length", l);
-            for (int x = 0; x< l; x++){
-                njo.put("Cargo"+x, rand.nextInt(5));
-            }
-            ja.put(njo);
-        }
-        jo.put("Piles",ja);
+        AppGetter app = AppGetter.init();
+        app.start();
+        while(!app.doesHavePiles()){
 
-        setPiles(jo, arr);
-        print(arr.toString());
+        }
+        System.out.println("We Are Here");
+        app.setPiles();
+        System.out.println("I am Here");
+        System.out.println("FBYFYGYVGF"+(app.getPilesCargo(true).get(0).get(0) == Cargo.Barrel));
+
     }
 
     private static void setPiles(JSONObject jo, ArrayList<ArrayList<Integer>> arr) throws JSONException{
